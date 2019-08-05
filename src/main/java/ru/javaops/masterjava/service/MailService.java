@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unused")
 public class MailService {
     private static final String OK = "OK";
 
@@ -15,6 +16,7 @@ public class MailService {
 
     private final ExecutorService mailExecutor = Executors.newFixedThreadPool(8);
 
+    @SuppressWarnings("RedundantThrows")
     public GroupResult sendToList(final String template, final Set<String> emails) throws Exception {
         final CompletionService<MailResult> completionService = new ExecutorCompletionService<>(mailExecutor);
 
@@ -83,6 +85,7 @@ public class MailService {
     }
 
     // dummy realization
+    @SuppressWarnings({"WeakerAccess", "RedundantThrows"})
     public MailResult sendToUser(String template, String email) throws Exception {
         try {
             Thread.sleep(500);  //delay
@@ -101,10 +104,11 @@ public class MailService {
             return new MailResult(email, OK);
         }
 
-        private static MailResult error(String email, String error) {
+        private static MailResult error(String email, @SuppressWarnings("SameParameterValue") String error) {
             return new MailResult(email, error);
         }
 
+        @SuppressWarnings("WeakerAccess")
         public boolean isOk() {
             return OK.equals(result);
         }
@@ -125,6 +129,7 @@ public class MailService {
         private final List<MailResult> failed; // failed emails with causes
         private final String failedCause;  // global fail cause
 
+        @SuppressWarnings("WeakerAccess")
         public GroupResult(int success, List<MailResult> failed, String failedCause) {
             this.success = success;
             this.failed = failed;
