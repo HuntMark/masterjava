@@ -10,8 +10,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class SquareMatricesMultiplicationTest {
 
     private static final int MATRIX_SIZE = 1000;
-    private static final int[][] MATRIX_A = new int[MATRIX_SIZE][MATRIX_SIZE];
-    private static final int[][] MATRIX_B = new int[MATRIX_SIZE][MATRIX_SIZE];
+    static final int[][] MATRIX_A = new int[MATRIX_SIZE][MATRIX_SIZE];
+    static final int[][] MATRIX_B = new int[MATRIX_SIZE][MATRIX_SIZE];
     private static final int[][] ACTUAL_MATRIX = new int[MATRIX_SIZE][MATRIX_SIZE];
     private static final int[][] EXPECTED_MATRIX = new int[MATRIX_SIZE][MATRIX_SIZE];
 
@@ -28,7 +28,7 @@ public class SquareMatricesMultiplicationTest {
         assertArrayEquals(EXPECTED_MATRIX, ACTUAL_MATRIX);
     }
 
-    private static void fillByRandomValues(int[][] matrix) {
+    static void fillByRandomValues(int[][] matrix) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
@@ -37,7 +37,7 @@ public class SquareMatricesMultiplicationTest {
         }
     }
 
-    private static void naiveMultiplication() {
+    static void naiveMultiplication() {
         for (int i = 0; i < MATRIX_SIZE; i++) {
             for (int j = 0; j < MATRIX_SIZE; j++) {
                 int sum = 0;
@@ -52,7 +52,7 @@ public class SquareMatricesMultiplicationTest {
     /**
      * @see <a href="https://habr.com/ru/post/114797/">История одной оптимизации</a>
      */
-    private static void quickMultiplication() {
+    static void quickMultiplication() {
         final int[] column = new int[MATRIX_SIZE];
         try {
             //noinspection InfiniteLoopStatement
